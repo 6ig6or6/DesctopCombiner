@@ -11,7 +11,7 @@ import java.util.Set;
 
 
 public class Combiner {
-    public void combine(List<File> parts) {
+    public void combine(List<File> parts) throws IOException {
         Set<Path> set = new LinkedHashSet<>(parts.stream().map(File::toPath).sorted(new Comparator<Path>() {
             @Override
             public int compare(Path o1, Path o2) {
@@ -24,12 +24,8 @@ public class Combiner {
             }
         }).toList());
         Path newPath = createNewPathWithAppropriateName(set);
-        try {
-            Path newFile = Files.createFile(newPath);
-            transferAllBytesToNewPath(newFile, set);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Path newFile = Files.createFile(newPath);
+        transferAllBytesToNewPath(newFile, set);
     }
 
     private static Path createNewPathWithAppropriateName(Set<Path> set){
@@ -44,7 +40,8 @@ public class Combiner {
         for (Path p:set) {
             byte[] bytes;
             try(BufferedInputStream bufferedInputStream = new BufferedInputStream(Files.newInputStream(p));
-                FileOutputStream fileOutputStream = new FileOutputStream(path.toFile(), true);      //the fileOutputStream will append bytes, not rewrite them
+                FileOutputStream fileOutputStream = new FileOutputStream(path.toFile(), true);
+                //the fileOutputStream will append bytes, not rewrite them
                 BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream)) {
 
                 while (bufferedInputStream.available()>0){
