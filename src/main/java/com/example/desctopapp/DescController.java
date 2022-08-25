@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalTime;
 import java.util.List;
 
 
@@ -22,27 +23,27 @@ public class DescController {
     @FXML
     protected void onDivideFileButtonClick() {
         Divider divider = new Divider();
-        textArea.appendText("The file is dividing!\n");
+        textArea.appendText(LocalTime.now() + " The file is dividing!\n");
         try {
             File file = fileChooser.showOpenDialog(stage);
             divider.divide(file);
-            textArea.appendText("File divided!\n");
+            textArea.appendText(LocalTime.now() +": File divided!\n");
         } catch (Exception e) {
-            textArea.appendText("Something went wrong!\n");
+            textArea.appendText(LocalTime.now() +": Something went wrong!\n");
         }
     }
     @FXML
     protected void onCombineFileButtonClick() {
         Combiner combiner = new Combiner();
-        textArea.appendText("The file is combining!\n");
+        textArea.appendText(LocalTime.now() +": The file is combining!\n");
         try {
             List<File> parts = fileChooser.showOpenMultipleDialog(stage);
             combiner.combine(parts);
-            textArea.appendText("File combined!\n");
+            textArea.appendText(LocalTime.now() +": File combined!\n");
         } catch (IOException ex) {
-            textArea.appendText("File already exists!\n");
+            textArea.appendText(LocalTime.now() +": File already exists!\n");
         } catch (Exception e) {
-            textArea.appendText("Something went wrong!\n");
+            textArea.appendText(LocalTime.now() +": Something went wrong!\n");
         }
     }
 }

@@ -8,16 +8,19 @@
 
 <?import javafx.scene.control.TextArea?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.desctopapp.DescController">
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.desctopapp.DescController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
-
-    <Button text="Divide a file" onAction="#onDivideFileButtonClick"/>
-    <Button alignment="CENTER_RIGHT" text="Combine a file" onAction="#onCombineFileButtonClick"/>
-
+    <left>
+    <Button text="Divide a file"  minWidth="200" minHeight="75" onAction="#onDivideFileButtonClick"/>
+    </left>
+    <right>
+    <Button  text="Combine a file" minWidth="200" minHeight="75" onAction="#onCombineFileButtonClick"/>
+    </right>
+    <bottom>
     <TextArea fx:id="textArea" editable="false"/>
-
-</VBox>
-
+    </bottom>
+</BorderPane>
