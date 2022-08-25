@@ -4,8 +4,8 @@ import com.example.desctopapp.filechooser.CustomFileChooser;
 import com.example.desctopapp.model.Combiner;
 import com.example.desctopapp.model.Divider;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -16,33 +16,31 @@ public class DescController {
     private Stage stage;
     private final CustomFileChooser fileChooser = new CustomFileChooser();
     @FXML
-    private Label operationText;
-
-
+    private TextArea textArea;
 
     @FXML
     protected void onDivideFileButtonClick() {
         Divider divider = new Divider();
-        operationText.setText("The file is dividing!");
+        textArea.appendText("The file is dividing!\n");
         try {
             File file = fileChooser.chooseFile(stage);
             divider.divide(file);
-            operationText.setText("Done!");
+            textArea.appendText("Done!\n");
         } catch (Exception e) {
-            operationText.setText("Something went wrong!");
+            textArea.appendText("Something went wrong!\n");
         }
 
     }
     @FXML
     protected void onCombineFileButtonClick() {
         Combiner combiner = new Combiner();
-        operationText.setText("The file is combining!");
+        textArea.appendText("The file is combining!\n");
         try {
             List<File> parts = fileChooser.chooseMultiplyFiles(stage);
             combiner.combine(parts);
-            operationText.setText("Done!");
+            textArea.appendText("Done!\n");
         } catch (Exception e) {
-            operationText.setText("Something went wrong!");
+            textArea.appendText("Something went wrong!\n");
         }
     }
 }
