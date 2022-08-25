@@ -9,6 +9,7 @@
 <?import javafx.scene.control.TextArea?>
 
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Label?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.desctopapp.DescController">
     <padding>
@@ -18,8 +19,11 @@
     <Button text="Divide a file"  minWidth="200" minHeight="75" onAction="#onDivideFileButtonClick"/>
     </left>
     <right>
-    <Button  text="Combine a file" minWidth="200" minHeight="75" onAction="#onCombineFileButtonClick"/>
+    <Button text="Combine a file" minWidth="200" minHeight="75" onAction="#onCombineFileButtonClick"/>
     </right>
+    <center>
+        <Label text="https://github.com/6ig6or6"/>
+    </center>
     <bottom>
     <TextArea fx:id="textArea" editable="false"/>
     </bottom>
