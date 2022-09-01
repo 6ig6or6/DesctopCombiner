@@ -2,9 +2,12 @@ package com.example.desctopapp;
 
 import com.example.desctopapp.model.Combiner;
 import com.example.desctopapp.model.Divider;
+import com.example.desctopapp.model.Size;
 import javafx.fxml.FXML;
 
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -15,6 +18,7 @@ import java.util.List;
 
 
 public class DescController {
+    public ToggleGroup group;
     private Stage stage;
     private final FileChooser fileChooser = new FileChooser();
     @FXML
@@ -23,10 +27,12 @@ public class DescController {
     @FXML
     protected void onDivideFileButtonClick() {
         Divider divider = new Divider();
-        textArea.appendText(LocalTime.now() + " The file is dividing!\n");
+        Size size = getSize();
+        textArea.appendText(LocalTime.now() + ": Preferred size is " + size.getSize() + "\n");
+        textArea.appendText(LocalTime.now() + ": The file is dividing!\n");
         try {
             File file = fileChooser.showOpenDialog(stage);
-            divider.divide(file);
+            divider.divide(file, size);
             textArea.appendText(LocalTime.now() +": File divided!\n");
         } catch (Exception e) {
             textArea.appendText(LocalTime.now() +": Something went wrong!\n");
@@ -45,5 +51,14 @@ public class DescController {
         } catch (Exception e) {
             textArea.appendText(LocalTime.now() +": Something went wrong!\n");
         }
+    }
+    private Size getSize() {
+        RadioButton radioButton = (RadioButton) group.getSelectedToggle();
+        return switch (radioButton.getText()) {
+            case "1 mb" -> Size.MB1;
+            case "10 mb" -> Size.MB10;
+            case "50 mb" -> Size.MB50;
+            default -> Size.MB10;
+        };
     }
 }

@@ -3,10 +3,14 @@ package com.example.desctopapp.model;
 import java.io.*;
 
 public class Divider {
-    public void divide(File file) throws IOException { //"C:\\Users\\PC\\Desktop\\124\\1234.mp4"
+    public void divide(File file, Size size) throws IOException { //"C:\\Users\\PC\\Desktop\\124\\1234.mp4"
         int partCounter = 1; //the first part will be .part1
-
-        byte[] buffer = new byte[10240 * 1024]; // 10MB
+        int megabytes = switch (size) {
+            case MB1 -> 1024;
+            case MB10 -> 10240;
+            case MB50 -> 50240;
+        };
+        byte[] buffer = new byte[megabytes * 1024]; // 10MB
 
         String fileName = file.getName();
 

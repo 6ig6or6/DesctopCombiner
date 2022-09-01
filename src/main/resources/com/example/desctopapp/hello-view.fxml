@@ -2,21 +2,45 @@
 
 <?import javafx.geometry.Insets?>
 
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
 
 <?import javafx.scene.control.TextArea?>
 
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.control.Label?>
+
+<?import javafx.scene.control.RadioButton?>
+
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.ToggleGroup?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.desctopapp.DescController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
+
+   <Pane>
+    <RadioButton text="1 mb" layoutX="30" layoutY="120">
+        <toggleGroup>
+            <ToggleGroup fx:id="group"/>
+        </toggleGroup>
+    </RadioButton>
+
+    <RadioButton text="10 mb" layoutX="50" layoutY="140" selected="true" >
+        <toggleGroup>
+            <fx:reference source="group"/>
+        </toggleGroup>
+    </RadioButton>
+
+    <RadioButton text="50 mb" layoutX="70" layoutY="160">
+        <toggleGroup>
+            <fx:reference source="group"/>
+        </toggleGroup>
+    </RadioButton>
+       <Label text="Preferred size of the divided parts" layoutX="30" layoutY="190"/>
+   </Pane>
     <left>
-    <Button text="Divide a file"  minWidth="200" minHeight="75" onAction="#onDivideFileButtonClick"/>
+        <Button text="Divide a file"  minWidth="200" minHeight="75" onAction="#onDivideFileButtonClick"/>
     </left>
     <right>
     <Button text="Combine a file" minWidth="200" minHeight="75" onAction="#onCombineFileButtonClick"/>
