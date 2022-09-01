@@ -28,8 +28,8 @@ public class DescController {
     protected void onDivideFileButtonClick() {
         Divider divider = new Divider();
         Size size = getSize();
-        textArea.appendText(LocalTime.now() + ": Preferred size is " + size.getSize() + "\n");
         textArea.appendText(LocalTime.now() + ": The file is dividing!\n");
+        textArea.appendText(LocalTime.now() + ": Preferred size is " + size.getSize() + "\n");
         try {
             File file = fileChooser.showOpenDialog(stage);
             divider.divide(file, size);
