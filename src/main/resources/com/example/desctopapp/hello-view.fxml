@@ -13,6 +13,7 @@
 
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.Hyperlink?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.desctopapp.DescController">
     <padding>
@@ -39,6 +40,9 @@
     </RadioButton>
        <Label text="Preferred size of the divided parts" layoutX="30" layoutY="190"/>
    </Pane>
+    <Pane>
+        <Button text="Send feedback" layoutX="1245" layoutY="450" minWidth="100" minHeight="35" onAction="#onSendFeedbackButtonClick"/>
+    </Pane>
     <left>
         <Button text="Divide a file"  minWidth="200" minHeight="75" onAction="#onDivideFileButtonClick"/>
     </left>
@@ -46,7 +50,7 @@
     <Button text="Combine a file" minWidth="200" minHeight="75" onAction="#onCombineFileButtonClick"/>
     </right>
     <center>
-        <Label text="https://github.com/6ig6or6"/>
+        <Hyperlink text="https://github.com/6ig6or6" onAction="#onLinkClick"/>
     </center>
     <bottom>
     <TextArea fx:id="textArea" editable="false"/>

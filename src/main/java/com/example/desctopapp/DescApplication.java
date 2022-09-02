@@ -16,7 +16,6 @@ public class DescApplication extends Application {
         stage.setTitle("File Combiner");
         stage.setScene(scene);
         stage.show();
-
     }
     public static void main(String[] args) {
         launch();

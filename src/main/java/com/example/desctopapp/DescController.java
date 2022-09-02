@@ -13,9 +13,11 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalTime;
 import java.util.List;
-
+import java.awt.Desktop;
 
 public class DescController {
     public ToggleGroup group;
@@ -23,13 +25,12 @@ public class DescController {
     private final FileChooser fileChooser = new FileChooser();
     @FXML
     private TextArea textArea;
-
     @FXML
     protected void onDivideFileButtonClick() {
         Divider divider = new Divider();
         Size size = getSize();
-        textArea.appendText(LocalTime.now() + ": The file is dividing!\n");
-        textArea.appendText(LocalTime.now() + ": Preferred size is " + size.getSize() + "\n");
+        textArea.appendText(LocalTime.now() + ": The file is dividing! " +
+                        "Preferred size is " + size.getSize() + "\n");
         try {
             File file = fileChooser.showOpenDialog(stage);
             divider.divide(file, size);
@@ -51,6 +52,26 @@ public class DescController {
         } catch (Exception e) {
             textArea.appendText(LocalTime.now() +": Something went wrong!\n");
         }
+    }
+    @FXML
+    protected void onLinkClick() {
+        if (Desktop.isDesktopSupported()) {
+            Desktop desktop = Desktop.getDesktop();
+            try {
+                desktop.browse(new URI("https://github.com/6ig6or6"));
+                textArea.appendText(LocalTime.now() + ": Redirecting to GitHub...\n");
+            } catch (IOException | URISyntaxException e) {
+                textArea.appendText(LocalTime.now() + ": Something went wrong!\n");
+            }
+        }
+        else {
+            textArea.appendText(LocalTime.now() + ": Unfortunately, your system doesn't support this operation" +
+                    "but you may open this link in a browser\n");
+        }
+    }
+    @FXML
+    protected void onSendFeedbackButtonClick() {
+
     }
     private Size getSize() {
         RadioButton radioButton = (RadioButton) group.getSelectedToggle();
