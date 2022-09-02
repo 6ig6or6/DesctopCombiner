@@ -71,7 +71,15 @@ public class DescController {
     }
     @FXML
     protected void onSendFeedbackButtonClick() {
-
+        if (Desktop.isDesktopSupported()) {
+            Desktop desktop = Desktop.getDesktop();
+            try {
+                desktop.mail();
+                textArea.appendText(LocalTime.now() + ": Opening your mail application...\n");
+            } catch (IOException e) {
+                textArea.appendText(LocalTime.now() + ": Something went wrong!\n");
+            }
+        }
     }
     private Size getSize() {
         RadioButton radioButton = (RadioButton) group.getSelectedToggle();
