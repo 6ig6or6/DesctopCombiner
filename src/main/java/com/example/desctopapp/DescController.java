@@ -24,6 +24,7 @@ import java.util.ResourceBundle;
 
 public class DescController {
     public ToggleGroup group;
+    @SuppressWarnings(value = "all")
     private Stage stage;
     private final FileChooser fileChooser = new FileChooser();
     private static final ResourceBundle RES = ResourceBundle.getBundle("messages");
