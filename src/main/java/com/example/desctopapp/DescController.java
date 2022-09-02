@@ -82,6 +82,9 @@ public class DescController {
                 textArea.appendText(LocalTime.now() + ": Something went wrong!\n");
             }
         }
+        else {
+            textArea.appendText(LocalTime.now() + ": Unfortunately, your system doesn't support this operation\n");
+        }
     }
     private Size getSize() {
         RadioButton radioButton = (RadioButton) group.getSelectedToggle();
