@@ -39,10 +39,9 @@
         </toggleGroup>
     </RadioButton>
        <Label text="Preferred size of the divided parts" layoutX="30" layoutY="190"/>
+       <Button text="Send feedback" layoutX="1245" layoutY="450" minWidth="100" minHeight="35" onAction="#onSendFeedbackButtonClick"/>
    </Pane>
-    <Pane>
-        <Button text="Send feedback" layoutX="1245" layoutY="450" minWidth="100" minHeight="35" onAction="#onSendFeedbackButtonClick"/>
-    </Pane>
+
     <left>
         <Button text="Divide a file"  minWidth="200" minHeight="75" onAction="#onDivideFileButtonClick"/>
     </left>

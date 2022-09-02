@@ -1,5 +1,6 @@
 package com.example.desctopapp;
 
+import com.example.desctopapp.feedback.PopupWindow;
 import com.example.desctopapp.model.Combiner;
 import com.example.desctopapp.model.Divider;
 import com.example.desctopapp.model.Size;
@@ -73,10 +74,11 @@ public class DescController {
     protected void onSendFeedbackButtonClick() {
         if (Desktop.isDesktopSupported()) {
             Desktop desktop = Desktop.getDesktop();
+            PopupWindow popupWindow = new PopupWindow(desktop);
             try {
-                desktop.mail();
+                popupWindow.display();
                 textArea.appendText(LocalTime.now() + ": Opening your mail application...\n");
-            } catch (IOException e) {
+            } catch (RuntimeException e) {
                 textArea.appendText(LocalTime.now() + ": Something went wrong!\n");
             }
         }
