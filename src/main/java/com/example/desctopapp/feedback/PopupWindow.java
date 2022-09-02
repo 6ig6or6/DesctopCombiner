@@ -13,23 +13,23 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ResourceBundle;
 
 
 public class PopupWindow {
     private final Desktop desktop;
-
+    private static final ResourceBundle RES = ResourceBundle.getBundle("messages");
     public PopupWindow(Desktop desktop) {
         this.desktop = desktop;
     }
-
     public void display() {
         Stage popupWindow = new Stage();
 
         popupWindow.initModality(Modality.APPLICATION_MODAL);
-        popupWindow.setTitle("Feedback");
+        popupWindow.setTitle(RES.getString("feedback.button"));
         TextArea textArea = createTextArea();
-        Label label = new Label("This button will open your mail application to send the feedback");
-        Button button = new Button("Send");
+        Label label = new Label(RES.getString("open.mail.button"));
+        Button button = new Button(RES.getString("send"));
 
         button.setOnAction(actionEvent -> {
             try {
