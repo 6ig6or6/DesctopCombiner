@@ -34,28 +34,28 @@ public class DescController {
     protected void onDivideFileButtonClick() {
         Divider divider = new Divider();
         Size size = getSize();
-        textArea.appendText(time() + RES.getString("file.dividing") +
+        textArea.appendText(createLog("file.dividing") +
                         RES.getString("pref.size") + size.getSize() + "\n");
         try {
             File file = fileChooser.showOpenDialog(stage);
             divider.divide(file, size);
-            textArea.appendText(time() + RES.getString("divided"));
+            textArea.appendText(createLog("divided"));
         } catch (Exception e) {
-            textArea.appendText(time() + RES.getString("went.wrong"));
+            textArea.appendText(createLog("went.wrong"));
         }
     }
     @FXML
     protected void onCombineFileButtonClick() {
         Combiner combiner = new Combiner();
-        textArea.appendText(time() + RES.getString("file.combining"));
+        textArea.appendText(createLog("file.combining"));
         try {
             List<File> parts = fileChooser.showOpenMultipleDialog(stage);
             combiner.combine(parts);
-            textArea.appendText(time() + RES.getString("combined"));
+            textArea.appendText(createLog("combined"));
         } catch (IOException ex) {
-            textArea.appendText(time() + RES.getString("file.exists"));
+            textArea.appendText(createLog("file.exists"));
         } catch (Exception e) {
-            textArea.appendText(time() + RES.getString("went.wrong"));
+            textArea.appendText(createLog("went.wrong"));
         }
     }
     @FXML
@@ -64,13 +64,13 @@ public class DescController {
             Desktop desktop = Desktop.getDesktop();
             try {
                 desktop.browse(new URI("https://github.com/6ig6or6"));
-                textArea.appendText(time() + RES.getString("redir.git"));
+                textArea.appendText(createLog("redir.git"));
             } catch (IOException | URISyntaxException e) {
-                textArea.appendText(time() + RES.getString("went.wrong"));
+                textArea.appendText(createLog("went.wrong"));
             }
         }
         else {
-            textArea.appendText(time() + RES.getString("not.support") +
+            textArea.appendText(createLog("not.support") +
                     RES.getString("may.open"));
         }
     }
@@ -81,13 +81,13 @@ public class DescController {
             PopupWindow popupWindow = new PopupWindow(desktop);
             try {
                 popupWindow.display();
-                textArea.appendText(time() + RES.getString("opening.mail"));
+                textArea.appendText(createLog("opening.mail"));
             } catch (RuntimeException e) {
-                textArea.appendText(time() + RES.getString("went.wrong"));
+                textArea.appendText(createLog("went.wrong"));
             }
         }
         else {
-            textArea.appendText(time() + RES.getString("not.support"));
+            textArea.appendText(createLog("not.support"));
         }
     }
     private Size getSize() {
@@ -98,7 +98,7 @@ public class DescController {
             default -> Size.MB10;
         };
     }
-    private String time() {
-        return LocalTime.now().format(df);
+    private String createLog(String message) {
+        return LocalTime.now().format(df) + RES.getString(message);
     }
 }
